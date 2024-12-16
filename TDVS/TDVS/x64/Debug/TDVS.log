@@ -1,0 +1,8 @@
+﻿  main.cpp
+  dictionary.cpp
+D:\Документы\Уник\ОПИ 2\TDVS\TDPVS\TDVS\TDVS\dictionary.cpp(11,25): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  trainer.cpp
+D:\Документы\Уник\ОПИ 2\TDVS\TDPVS\TDVS\TDVS\trainer.cpp(24,39): warning C4267: -=: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Документы\Уник\ОПИ 2\TDVS\TDPVS\TDVS\TDVS\trainer.cpp(42,66): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода...
+  TDVS.vcxproj -> D:\Документы\Уник\ОПИ 2\TDVS\TDPVS\TDVS\x64\Debug\TDVS.exe
