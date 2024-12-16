@@ -1,0 +1,7 @@
+﻿  P.cpp
+C:\Users\DS\source\repos\Proverka\P.cpp(17,19): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\DS\source\repos\Proverka\P.cpp(18,25): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\DS\source\repos\Proverka\P.cpp(26,27): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\DS\source\repos\Proverka\P.cpp(33,27): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\DS\source\repos\Proverka\P.cpp(57,19): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  Proverka.vcxproj -> C:\Users\DS\source\repos\Proverka\x64\Debug\Proverka.exe
