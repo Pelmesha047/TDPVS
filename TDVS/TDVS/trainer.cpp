@@ -11,11 +11,13 @@ Trainer::Trainer(const std::string& language) : dictionary(language), duplicateC
 
 void Trainer::generateLine() {
     currentLine.clear();
+    usedWords.clear();
     int remainingLength = SCREEN_WIDTH;
     while (remainingLength > 0) {
         int maxLength = std::min(remainingLength, 7);
-        std::string word = dictionary.getRandomWord(maxLength);
+        std::string word = dictionary.getRandomWord(maxLength, usedWords);
         if (word.empty()) break;
+        usedWords.insert(word);
         if (!currentLine.empty()) {
             currentLine += " ";
             --remainingLength;
@@ -30,33 +32,47 @@ void Trainer::analyzeInput(const std::string& userInput) {
     std::istringstream currentStream(currentLine);
     std::string inputWord, currentWord;
     std::string result;
+    bool allCorrect = true;
 
     while (currentStream >> currentWord) {
         if (!(inputStream >> inputWord)) {
             doubleErrors(currentWord, "");
             result += currentWord + " ";
+            allCorrect = false;
             continue;
         }
 
         if (currentWord == inputWord) {
-            result += dictionary.getRandomWord(currentWord.length()) + " ";
+            std::string newWord;
+            do {
+                newWord = dictionary.getRandomWord(currentWord.length(), usedWords);
+            } while (newWord.empty());
+            usedWords.insert(newWord);
+            result += newWord + " ";
         }
         else {
             doubleErrors(currentWord, inputWord);
             result += currentWord + " ";
+            allCorrect = false;
         }
     }
 
     currentLine = result.empty() ? result : result.substr(0, result.size() - 1);
-    if (userInput == currentLine) {
-        currentLine = currentLine.substr(0, std::max(0, (int)currentLine.length() - 2));
+
+    if (allCorrect) {
+        if ((int)currentLine.length() >= 2) {
+            currentLine = currentLine.substr(0, currentLine.length() - 2);
+        }
+        else {
+            currentLine.clear();
+        }
     }
 }
 
 void Trainer::doubleErrors(std::string& word, const std::string& userInput) {
     for (size_t i = 0; i < word.length(); ++i) {
         if (i >= userInput.length() || word[i] != userInput[i]) {
-            word.insert(i, duplicateCount, word[i]);
+            word.insert(i, std::string(duplicateCount, word[i]));
             i += duplicateCount - 1;
         }
     }

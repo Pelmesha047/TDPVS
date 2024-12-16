@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_set>
 #include "dictionary.h"
 
 class Trainer {
@@ -15,6 +16,7 @@ private:
     Dictionary dictionary;
     std::string currentLine;
     int duplicateCount;
+    std::unordered_set<std::string> usedWords; // Список уже использованных слов
 
     void generateLine();
     void analyzeInput(const std::string& userInput);

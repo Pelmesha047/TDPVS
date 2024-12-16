@@ -1,4 +1,3 @@
-
 // dictionary.cpp
 #include "dictionary.h"
 #include <fstream>
@@ -27,8 +26,12 @@ void Dictionary::loadWords(const std::string& language) {
     }
 }
 
-std::string Dictionary::getRandomWord(int maxLength) {
+std::string Dictionary::getRandomWord(int maxLength, const std::unordered_set<std::string>& usedWords) {
     if (maxLength < 1 || maxLength > 7 || wordsByLength[maxLength].empty()) return "";
     const auto& words = wordsByLength[maxLength];
-    return words[std::rand() % words.size()];
+    std::string word;
+    do {
+        word = words[std::rand() % words.size()];
+    } while (usedWords.count(word) > 0);
+    return word;
 }
